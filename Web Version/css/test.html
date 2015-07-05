@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="{system.domain}{system.project}" />
+    <meta charset="UTF-8">
+    <title>Manage Page</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="js/function.js"></script>
+    <style type="text/css">
+        body{
+            margin: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+<!--BOX notify-->
+<span class="label label-warning">Warning!</span> Incorrect password!</p>
+<!--BOX notify-->
+
+<!--BOX managerLogin-->
+<div class="login">
+    <div class="container">
+        <div class="row">
+            <h2>Login</h2>
+            <form class="form-horizontal" action="" method="post">
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Pasword</label>
+                    <div class="col-xs-10">
+                        <input name="password" type="password" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--BOX managerLogin-->
+
+<!--BOX manage-->
+<div class="list">
+    <div class="container">
+        <div class="row">
+            <h2>Submissions</h2>
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Name</th>
+                    <th>Img</th>
+                    <th>Msg</th>
+                    <th>Round</th>
+                    <th>Vote</th>
+                    <th>View</th>
+                    <th>Created</th>
+                    <th>IP</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--BASIC photo-->
+                <tr>
+                    <td>{photo.index}</td>
+                    <td>
+                        <a target="_blank" href="http://facebook.com/{photo.fbid}">
+                            <img height="50px" src="https://graph.facebook.com/{photo.fbid}/picture" alt="{photo.user_name}"/>
+                            <br/>{photo.user_name}
+                        </a>
+                    </td>
+                    <td>
+                        <a target="_blank" href="{_UPLOAD}{photo.img}">
+                            <img height="100px" src="{_UPLOAD}{photo.img}">
+                        </a>
+                    </td>
+                    <td>{photo.msg}</td>
+                    <td>{photo.round}</td>
+                    <td>{photo.vote}</td>
+                    <td>{photo.view}</td>
+                    <td>{photo.created}</td>
+                    <td>{photo.ip}</td>
+                    <td><span id="status-{photo.id}" class="label label-{photo.status}">{photo.status_name}</span></td>
+                    <td>
+                        <div class="btn-group-vertical">
+                            <button name="approve" value="{photo.id}" type="button" class="btn btn-success btn-action">Approve</button>
+                            <button type="button" class="btn btn-default" onclick="window.location = 'manage/detail/{photo.id}'">Detail</button>
+                            <button name="remove" value="{photo.id}" type="button" class="btn btn-danger btn-action">Remove</button>
+                        </div>
+                    </td>
+                </tr>
+                <!--BASIC photo-->
+                </tbody>
+            </table>
+
+            <ul class="pagination">
+                {paging.page}
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+<!--BOX manage-->
+</body>
+</html>
